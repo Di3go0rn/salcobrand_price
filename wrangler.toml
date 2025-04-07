@@ -1,0 +1,37 @@
+# Configuración de despliegue para Next.js
+name = "salcobrand-extractor"
+main = "./.output/server/index.mjs"
+compatibility_date = "2023-06-28"
+node_compat = true
+
+# Configuración de KV para caché
+kv_namespaces = [
+  { binding = "kv", id = "salcobrand-extractor-kv", preview_id = "salcobrand-extractor-kv-preview" }
+]
+
+# Configuración de rutas
+routes = [
+  { pattern = "salcobrand-extractor.pages.dev", custom_domain = true }
+]
+
+# Variables de entorno
+[vars]
+NODE_ENV = "production"
+
+# Configuración para el entorno de desarrollo
+[env.development]
+name = "salcobrand-extractor-dev"
+kv_namespaces = [
+  { binding = "kv", id = "salcobrand-extractor-kv-dev", preview_id = "salcobrand-extractor-kv-preview" }
+]
+
+# Configuración para el entorno de producción
+[env.production]
+name = "salcobrand-extractor"
+kv_namespaces = [
+  { binding = "kv", id = "salcobrand-extractor-kv", preview_id = "salcobrand-extractor-kv-preview" }
+]
+
+# Configuración de compilación
+[build]
+command = "npm run build"
